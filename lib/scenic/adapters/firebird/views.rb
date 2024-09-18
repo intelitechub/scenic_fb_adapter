@@ -28,11 +28,16 @@ module Scenic
         end
 
         def to_scenic_view(result)
+          view_name = result.values_at "view_name"
           Scenic::View.new(
-            name: result["view_name"],
-            definition: result["view_source"].strip,
+            name: view_name,
+            definition: extract_definition(result),
             materialized: false,
           )
+        end
+
+        def extract_definition(result)
+          result["view_source"].strip.sub(/\A.*#{result["name"]}\W*AS\s*/, "")
         end
 
       end
