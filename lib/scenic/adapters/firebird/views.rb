@@ -29,8 +29,8 @@ module Scenic
 
         def to_scenic_view(result)
           Scenic::View.new(
-            name: result["viewname"],
-            definition: result["definition"].strip,
+            name: result[0],
+            definition: result[1].strip,
             materialized: false,
           )
         end
