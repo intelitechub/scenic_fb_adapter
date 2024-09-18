@@ -56,7 +56,7 @@ module Scenic
       delegate :execute, :quote_table_name, to: :connection
 
       def connection
-        Connection.new(connectable.connection)
+        connectable.connection
       end
     end
   end
